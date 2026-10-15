@@ -1,0 +1,29 @@
+----PROC---------
+
+PROC FACT
+
+CMP AX,0
+JE ESCERO
+PUSH AX
+DEC AX
+CALL FACT
+
+POP AX
+MUL BX
+MOV AX, BX
+JMP FIN
+
+ESCERO:
+
+MOV BX,0
+
+FIN:
+RET
+
+FACT ENDPROC
+
+----MAIN---------
+
+mov ax, n
+call FACT
+mov resultado, bx
