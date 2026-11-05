@@ -28,3 +28,37 @@ PROC ACTIVARBOMBA
     POP BP
     RET
 ENDPROC
+
+
+PROC DESACTIVARBOMBA
+    PUSH BP         ;
+    MOV BP,SP       ;
+
+    PUSH DX         ;
+    PUSH CX         ;
+    PUSH AX         ;
+
+    MOV DX,BOMBA    ;
+
+    IN AL,DX        ;
+
+    MOV CL, 0x14    ;
+    NOT CL          ;
+    AND AL,CL       ;
+    OUT DX, AL      ;
+    
+    WHILE:
+
+    IN AL,DX        ;
+    AND AL,0x01     ;
+    CMP AL,0        ;
+    JZ WHILE        ;
+
+    POP AX          ;
+    POP CX          ;
+    POP DX          ;
+    POP BP          ;
+    RET             ;
+ENDPROC
+
+
